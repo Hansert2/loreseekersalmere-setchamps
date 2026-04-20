@@ -269,6 +269,7 @@
     .store-name { font-weight: 500; }
     .event-name { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.1rem; }
     .row-date-mobile { font-size: 0.7rem; color: var(--text-faint); margin-bottom: 0.15rem; display: none; }
+    .row-meta-mobile { font-size: 0.7rem; color: var(--text-faint); margin-top: 0.2rem; display: none; }
 
     .placement-chip {
       display: inline-flex;
@@ -364,8 +365,9 @@
       .data-table tbody tr:last-child { border-bottom: none; }
       .data-table tbody tr:hover { background: var(--bg-hover); }
 
-      /* Hide Date (col 1) and View (col 5) */
+      /* Hide Date (col 1), Record (col 4), and View (col 5) */
       .data-table td:nth-child(1),
+      .data-table td:nth-child(4),
       .data-table td:nth-child(5) { display: none; }
 
       /* Store — grows to fill available space */
@@ -390,7 +392,7 @@
       }
 
       .store-name { white-space: normal; word-break: break-word; }
-      .row-date-mobile { display: block; }
+      .row-meta-mobile { display: block; }
       .data-table tbody tr.has-link { cursor: pointer; }
     }
   </style>
@@ -567,9 +569,9 @@ function render(player) {
         <tr class="${rowClass}" ${rowAttr}>
           <td style="white-space:nowrap; color:var(--text-muted); font-size:0.8rem">${c.date ? esc(fmtDate(c.date)) : '—'}</td>
           <td>
-            <div class="row-date-mobile">${c.date ? esc(fmtDate(c.date)) : ''}</div>
             <div class="store-name">${esc(c.store || '—')}</div>
             <div class="event-name">${esc(c.eventName || '')}</div>
+            <div class="row-meta-mobile">${c.date ? esc(fmtDate(c.date)) : ''}${c.date && c.record && !upcoming ? ' · ' : ''}${!upcoming && c.record ? recordHtml : ''}</div>
           </td>
           <td>${placementHtml}</td>
           <td>${recordHtml}</td>
