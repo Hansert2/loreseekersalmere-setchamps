@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lore Seekers Almere</title>
-  <link rel="icon" href="/logo.png" />
+  <link rel="icon" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -377,7 +377,7 @@
 
 <header class="page-header">
   <div class="page-header-logo">
-    <img src="/logo.png" alt="LSA Logo" onerror="this.style.display='none'" />
+    <img src="logo.png" alt="LSA Logo" onerror="this.style.display='none'" />
     <div>
       Lore Seekers Almere
       <div class="page-header-sub">Team Set Championship Statistics</div>
@@ -397,7 +397,7 @@
 </header>
 
 <div class="hero">
-  <img src="/logo.png" alt="Lore Seekers Almere" class="hero-logo" onerror="this.style.display='none'" />
+  <img src="logo.png" alt="Lore Seekers Almere" class="hero-logo" onerror="this.style.display='none'" />
 </div>
 
 <main class="page-wrap">
@@ -533,7 +533,7 @@ function renderGrid() {
         : 'No events recorded yet';
     const card = document.createElement('a');
     card.className = 'player-card';
-    card.href = `/player.html?player=${p.slug}`;
+    card.href = `player.html?player=${p.slug}`;
     card.innerHTML = `
       <div class="avatar">${esc(p.initials)}</div>
       <div class="player-info">
@@ -685,7 +685,7 @@ function renderOverview() {
       <td class="num"><span class="ov-winrate ${wrClass}">${wr !== null ? wr + '%' : '—'}</span></td>
       <td class="num">${sets.length || '—'}</td>
     `;
-    tr.onclick = () => location.href = `/player.html?player=${p.slug}`;
+    tr.onclick = () => location.href = `player.html?player=${p.slug}`;
     tbody.appendChild(tr);
   }
 
