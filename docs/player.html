@@ -431,7 +431,7 @@ async function load() {
   if (!slug) { showError('No player specified.'); return; }
 
   try {
-    const res = await fetch('/players.json');
+    const res = await fetch('players.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const players = await res.json();
     const player = players.find(p => p.slug === slug);

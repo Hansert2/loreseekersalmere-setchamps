@@ -475,7 +475,7 @@ let currentSet   = null;
 
 async function loadPlayers() {
   try {
-    const res = await fetch('/players.json');
+    const res = await fetch('players.json');
     if (!res.ok) throw new Error('Failed to load players');
     const players = await res.json();
     render(players);
