@@ -366,10 +366,12 @@
       .hero-title { font-size: 1.4rem; }
       .player-grid { grid-template-columns: 1fr; }
       .stats-banner { grid-template-columns: repeat(2, 1fr); }
+
+      /* Keep only Player / Events / Best Finish — hide Record, Win %, Sets */
+      .overview-table { min-width: unset; }
       .overview-table th, .overview-table td { padding: 0.5rem 0.6rem; }
-      /* hide Sets column on small screens */
-      .overview-table th:last-child,
-      .overview-table td:last-child { display: none; }
+      .overview-table th:nth-child(n+4),
+      .overview-table td:nth-child(n+4) { display: none; }
     }
   </style>
 </head>
