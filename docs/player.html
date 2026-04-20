@@ -338,6 +338,16 @@
 
     /* ── Mobile ── */
     @media (max-width: 600px) {
+      /* Declutter header: drop socials and subtext, truncate breadcrumb */
+      .page-header-social { display: none; }
+      .page-header-sub    { display: none; }
+      .breadcrumb-current {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 140px;
+      }
+
       .player-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .player-header-tag { font-size: 1.1rem; }
 
