@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lore Seekers Almere</title>
+  <link rel="icon" href="/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-page:     hsl(236 34% 17%);
+      --bg-card:     hsl(236 34% 26%);
+      --bg-card-alt: hsl(236 34% 22%);
+      --bg-elevated: hsl(236 34% 32%);
+      --bg-hover:    hsl(236 34% 34%);
+      --gold:        hsl(41 47% 67%);
+      --gold-light:  hsl(35 51% 77%);
+      --gold-dim:    hsl(41 47% 67% / 0.15);
+      --text:        #fff;
+      --text-muted:  rgba(255,255,255,0.5);
+      --text-faint:  rgba(255,255,255,0.25);
+      --border:      rgba(255,255,255,0.08);
+      --border-gold: hsl(41 47% 67% / 0.4);
+      --shadow:      0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 14px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-page);
+      background-image: url('https://storage.googleapis.com/spicerack_media/game_images/1_disney-lorcana/background/lorcana-event-bg.png');
+      background-size: 400px;
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      background: var(--bg-card-alt);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      height: 52px;
+    }
+    .page-header-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .page-header-logo img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+    .page-header-sub {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 0.1rem;
+    }
+    .page-header-social {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: var(--text-muted);
+      border-radius: 4px;
+      transition: color 0.12s, background 0.12s;
+      text-decoration: none;
+    }
+    .social-link:hover { color: var(--gold); background: var(--gold-dim); }
+    .social-link svg { width: 16px; height: 16px; }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem 1.5rem;
+    }
+    .hero-logo {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+    }
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .hero-subtitle {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Team stats banner ── */
+    .stats-banner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-bottom: 2rem;
+    }
+    .stat-tile {
+      background: var(--bg-card-alt);
+      padding: 1.1rem 1rem;
+      text-align: center;
+    }
+    .stat-tile-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+    .stat-tile-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── Page wrap ── */
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    /* ── Section header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .section-count {
+      font-size: 0.72rem;
+      color: var(--text-faint);
+    }
+
+    /* ── Player grid ── */
+    .player-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .player-card {
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.12s;
+    }
+    .player-card:hover { background: var(--bg-hover); }
+    .player-card:hover .player-tag { color: var(--gold-light); }
+
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--bg-elevated);
+      border: 2px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .player-info { flex: 1; min-width: 0; }
+    .player-tag {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gold);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.12s;
+    }
+    .player-stats {
+      font-size: 0.72rem;
+      color: var(--text-faint);
+      margin-top: 0.25rem;
+    }
+    .player-stats span { color: var(--text-muted); }
+
+    .chevron {
+      color: var(--text-faint);
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: color 0.12s;
+    }
+    .player-card:hover .chevron { color: var(--gold); }
+
+    /* ── Loading ── */
+    .loading-state {
+      padding: 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .loading-bar {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      margin-bottom: 2rem;
+    }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+    /* ── Overview table ── */
+    .overview-section { margin-top: 2.5rem; }
+
+    .overview-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .overview-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      min-width: 440px;
+    }
+    .overview-table thead tr { background: var(--bg-card-alt); }
+    .overview-table th {
+      padding: 0.6rem 1rem;
+      text-align: left;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      user-select: none;
+      cursor: pointer;
+      transition: color 0.12s;
+    }
+    .overview-table th:hover { color: var(--gold-light); }
+    .overview-table th.num { text-align: center; }
+    .overview-table th.sort-asc::after  { content: ' ↑'; color: var(--gold); }
+    .overview-table th.sort-desc::after { content: ' ↓'; color: var(--gold); }
+    .overview-table th.sort-asc,
+    .overview-table th.sort-desc { color: var(--gold); }
+
+    .overview-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .overview-table td.num { text-align: center; color: var(--text-muted); }
+    .overview-table tbody tr {
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .overview-table tbody tr:hover { background: var(--bg-hover); }
+
+    .ov-tag { font-weight: 600; color: var(--gold); }
+    .ov-best { font-weight: 700; color: var(--text-muted); }
+    .ov-best.top1 { color: #ffd700; }
+    .ov-best.top4 { color: var(--gold-light); }
+    .ov-best.top8 { color: var(--gold); }
+    .ov-record { color: var(--text-muted); }
+    .ov-winrate { color: var(--text-muted); }
+    .ov-winrate.good { color: #7ec88a; }
+    .ov-winrate.great { color: #4fbe65; }
+
+    /* ── Responsive ── */
+    /* ── Season filter ── */
+    .filter-bar {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .filter-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      flex-shrink: 0;
+    }
+    .filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.12s, color 0.12s, border-color 0.12s;
+    }
+    .filter-pill:hover { border-color: var(--border-gold); color: var(--gold-light); }
+    .filter-pill.active {
+      background: var(--gold-dim);
+      border-color: var(--border-gold);
+      color: var(--gold);
+    }
+    .filter-pill .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    @media (max-width: 640px) {
+      html { font-size: 13px; }
+      .hero { padding: 1.75rem 1rem 1.25rem; }
+      .hero-logo { width: 72px; height: 72px; }
+      .hero-title { font-size: 1.4rem; }
+      .player-grid { grid-template-columns: 1fr; }
+      .stats-banner { grid-template-columns: repeat(2, 1fr); }
+      .overview-table th, .overview-table td { padding: 0.5rem 0.6rem; }
+      /* hide Sets column on small screens */
+      .overview-table th:last-child,
+      .overview-table td:last-child { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="page-header-logo">
+    <img src="/logo.png" alt="LSA Logo" onerror="this.style.display='none'" />
+    <div>
+      Lore Seekers Almere
+      <div class="page-header-sub">Team Set Championship Statistics</div>
+    </div>
+  </div>
+  <nav class="page-header-social">
+    <a href="https://www.twitch.tv/loreseekersalmere" target="_blank" rel="noopener" aria-label="Twitch" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/loreseekers.almere/" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@LoreSeekers.Almere" target="_blank" rel="noopener" aria-label="YouTube" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+    </a>
+  </nav>
+</header>
+
+<div class="hero">
+  <img src="/logo.png" alt="Lore Seekers Almere" class="hero-logo" onerror="this.style.display='none'" />
+</div>
+
+<main class="page-wrap">
+  <div id="loading-bar" class="loading-bar"></div>
+
+  <!-- Team stats banner -->
+  <div class="stats-banner" id="stats-banner" style="display:none;">
+    <div class="stat-tile">
+      <div class="stat-tile-value" id="stat-players">—</div>
+      <div class="stat-tile-label">Players</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-tile-value" id="stat-events">—</div>
+      <div class="stat-tile-label">Events Played</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-tile-value" id="stat-wins">—</div>
+      <div class="stat-tile-label">Total Wins</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-tile-value" id="stat-best">—</div>
+      <div class="stat-tile-label">Best Finish</div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span class="section-title">Team Roster</span>
+    <span class="section-count" id="player-count"></span>
+  </div>
+
+  <div class="filter-bar" id="filter-bar" style="display:none;">
+    <span class="filter-label">Season</span>
+    <div class="filter-pills" id="filter-pills"></div>
+  </div>
+
+  <div class="player-grid" id="player-grid">
+    <div class="loading-state">Loading players…</div>
+  </div>
+
+  <div class="overview-section" id="overview-section" style="display:none;">
+    <div class="section-header" style="margin-top:0;">
+      <span class="section-title">Team Overview</span>
+    </div>
+    <div class="overview-table-wrap">
+      <table class="overview-table" id="overview-table">
+        <thead>
+          <tr>
+            <th data-col="tag">Player</th>
+            <th data-col="events" class="num">Events</th>
+            <th data-col="best"   class="num">Best Finish</th>
+            <th data-col="record" class="num">Record</th>
+            <th data-col="wr"     class="num">Win %</th>
+            <th data-col="sets"   class="num">Sets</th>
+          </tr>
+        </thead>
+        <tbody id="overview-body"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<script>
+const SET_ORDER = [
+  'The First Chapter', 'Rise of the Floodborn', 'Into the Inklands',
+  "Ursula's Return", 'Shimmering Skies', 'Azurite Sea', "Archazia's Island",
+  'Reign of Jafar', 'Fabled', 'Whispers in the Well', 'Winterspell', 'Wilds Unknown',
+];
+
+let allPlayers   = [];
+let allRows      = [];
+let sortCol      = 'best';
+let sortDir      = 1;
+let activeFilter = null; // null = all, or a set name string
+let currentSet   = null;
+
+async function loadPlayers() {
+  try {
+    const res = await fetch('/players.json');
+    if (!res.ok) throw new Error('Failed to load players');
+    const players = await res.json();
+    render(players);
+  } catch (e) {
+    document.getElementById('player-grid').innerHTML =
+      `<div class="loading-state">Error: ${e.message}</div>`;
+  } finally {
+    document.getElementById('loading-bar').style.display = 'none';
+  }
+}
+
+function setFilter(f) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.set === (f ?? ''));
+  });
+  renderGrid();
+  renderBanner(filteredPlayers(), activeFilter);
+  renderOverview();
+}
+
+function getScopedRows() {
+  const players = filteredPlayers();
+  return activeFilter
+    ? buildRows(players.map(p => ({
+        ...p,
+        championships: (p.championships ?? []).filter(c => c.setName === activeFilter),
+      })))
+    : buildRows(players);
+}
+
+function filteredPlayers() {
+  if (!activeFilter) return allPlayers;
+  return allPlayers.filter(p =>
+    (p.championships ?? []).some(c => c.setName === activeFilter)
+  );
+}
+
+function renderGrid() {
+  const grid     = document.getElementById('player-grid');
+  const countEl  = document.getElementById('player-count');
+  const players  = filteredPlayers();
+  countEl.textContent = `${players.length} player${players.length !== 1 ? 's' : ''}`;
+
+  grid.innerHTML = '';
+  for (const p of players) {
+    const champs     = p.championships ?? [];
+    const eventCount = activeFilter
+      ? champs.filter(c => c.setName === activeFilter).length
+      : champs.length;
+    const label = activeFilter
+      ? `<span>${eventCount}</span> ${activeFilter} event${eventCount !== 1 ? 's' : ''}`
+      : eventCount > 0
+        ? `<span>${eventCount}</span> Set Champ${eventCount !== 1 ? 's' : ''} played`
+        : 'No events recorded yet';
+    const card = document.createElement('a');
+    card.className = 'player-card';
+    card.href = `/player.html?player=${p.slug}`;
+    card.innerHTML = `
+      <div class="avatar">${esc(p.initials)}</div>
+      <div class="player-info">
+        <div class="player-tag">${esc(p.tag)}</div>
+        <div class="player-stats">${label}</div>
+      </div>
+      <div class="chevron">›</div>
+    `;
+    grid.appendChild(card);
+  }
+}
+
+function buildRows(players) {
+  return players.map(p => {
+    const champs = p.championships ?? [];
+    const played = champs.filter(c => c.placement !== null);
+    const best   = played.length > 0 ? Math.min(...played.map(c => c.placement)) : null;
+    let totalW = 0, totalL = 0, totalD = 0;
+    for (const c of champs) {
+      if (!c.record) continue;
+      const parts = c.record.split('-').map(Number);
+      totalW += parts[0] || 0;
+      totalL += parts[1] || 0;
+      totalD += parts[2] || 0;
+    }
+    const totalGames = totalW + totalL + totalD;
+    const wr = totalGames > 0 ? Math.round((totalW / totalGames) * 100) : null;
+    const record = totalGames > 0
+      ? `${totalW}-${totalL}${totalD > 0 ? '-' + totalD : ''}`
+      : null;
+    const sets = [...new Set(champs.map(c => c.setName).filter(Boolean))];
+    return { p, events: champs.length, best, record, wr, sets, totalW };
+  });
+}
+
+function render(players) {
+  const grid    = document.getElementById('player-grid');
+  const countEl = document.getElementById('player-count');
+  countEl.textContent = `${players.length} players`;
+
+  if (players.length === 0) {
+    grid.innerHTML = '<div class="loading-state">No players found</div>';
+    return;
+  }
+
+  allPlayers = players;
+  allRows    = buildRows(players);
+
+  // Determine the current (most recent) set — exclude future/upcoming events
+  const today = new Date().toISOString().slice(0, 10);
+  currentSet = null;
+  let bestSetIdx = -1;
+  for (const p of players) {
+    for (const c of p.championships ?? []) {
+      if (c.date && c.date > today) continue; // skip upcoming
+      const idx = SET_ORDER.indexOf(c.setName);
+      if (idx > bestSetIdx) { bestSetIdx = idx; currentSet = c.setName; }
+    }
+  }
+  // Build one pill per set present in data, most recent first
+  const setsInData = SET_ORDER.filter(s =>
+    players.some(p => (p.championships ?? []).some(c => c.setName === s))
+  ).reverse();
+
+  const pillsEl = document.getElementById('filter-pills');
+  pillsEl.innerHTML = '';
+
+  // "All time" pill
+  const allBtn = document.createElement('button');
+  allBtn.className = 'filter-pill active';
+  allBtn.dataset.set = '';
+  allBtn.textContent = 'All time';
+  allBtn.onclick = () => setFilter(null);
+  pillsEl.appendChild(allBtn);
+
+  for (const setName of setsInData) {
+    const btn = document.createElement('button');
+    btn.className = 'filter-pill' + (setName === currentSet ? ' current-set' : '');
+    btn.dataset.set = setName;
+    btn.onclick = () => setFilter(setName);
+    btn.innerHTML = setName === currentSet
+      ? `<span class="dot"></span>${setName}`
+      : setName;
+    pillsEl.appendChild(btn);
+  }
+
+  if (setsInData.length > 0) {
+    document.getElementById('filter-bar').style.display = '';
+  }
+
+  renderGrid();
+  renderBanner(allPlayers, null);
+  renderOverview();
+  wireHeaders();
+}
+
+function renderBanner(players, setFilter) {
+  const uniqueEvents = new Set();
+  let totalWins = 0, bestAll = null;
+  for (const p of players) {
+    for (const c of p.championships ?? []) {
+      if (setFilter && c.setName !== setFilter) continue;
+      if (c.eventId) uniqueEvents.add(c.eventId);
+      if (c.record) {
+        const w = parseInt(c.record.split('-')[0]) || 0;
+        totalWins += w;
+      }
+      const pl = parseInt(c.placement);
+      if (!isNaN(pl) && (bestAll === null || pl < bestAll)) bestAll = pl;
+    }
+  }
+  document.getElementById('stat-players').textContent = players.length;
+  document.getElementById('stat-events').textContent  = uniqueEvents.size;
+  document.getElementById('stat-wins').textContent    = totalWins;
+  document.getElementById('stat-best').textContent    = bestAll !== null ? `#${bestAll}` : '—';
+  document.getElementById('stats-banner').style.display = '';
+}
+
+function sortedRows(rows) {
+  return [...(rows || allRows)].sort((a, b) => {
+    let av = a[sortCol], bv = b[sortCol];
+    // nulls always last
+    if (av === null && bv === null) return 0;
+    if (av === null) return 1;
+    if (bv === null) return -1;
+    if (typeof av === 'string') return av.localeCompare(bv) * sortDir;
+    // for 'sets' compare length
+    if (sortCol === 'sets') { av = a.sets.length; bv = b.sets.length; }
+    return (av - bv) * sortDir;
+  });
+}
+
+function renderOverview() {
+  const tbody   = document.getElementById('overview-body');
+  const section = document.getElementById('overview-section');
+
+  const scopedRows = getScopedRows();
+
+  tbody.innerHTML = '';
+  for (const { p, events, best, record, wr, sets } of sortedRows(scopedRows)) {
+    const bestClass = best === 1 ? 'top1' : best !== null && best <= 4 ? 'top4' : best !== null && best <= 8 ? 'top8' : '';
+    const wrClass   = wr !== null && wr >= 60 ? 'great' : wr !== null && wr >= 50 ? 'good' : '';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="ov-tag">${esc(p.tag)}</span></td>
+      <td class="num">${events || '—'}</td>
+      <td class="num"><span class="ov-best ${bestClass}">${best !== null ? '#' + best : '—'}</span></td>
+      <td class="num"><span class="ov-record">${record ?? '—'}</span></td>
+      <td class="num"><span class="ov-winrate ${wrClass}">${wr !== null ? wr + '%' : '—'}</span></td>
+      <td class="num">${sets.length || '—'}</td>
+    `;
+    tr.onclick = () => location.href = `/player.html?player=${p.slug}`;
+    tbody.appendChild(tr);
+  }
+
+  section.style.display = '';
+}
+
+function wireHeaders() {
+  document.querySelectorAll('.overview-table th[data-col]').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.col;
+      if (sortCol === col) {
+        sortDir *= -1;
+      } else {
+        sortCol = col;
+        sortDir = col === 'tag' ? 1 : 1;
+      }
+      document.querySelectorAll('.overview-table th').forEach(h => {
+        h.classList.remove('sort-asc', 'sort-desc');
+      });
+      th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+      renderOverview();
+    });
+  });
+
+  // Set default sort indicator
+  const defaultTh = document.querySelector('.overview-table th[data-col="best"]');
+  if (defaultTh) defaultTh.classList.add('sort-asc');
+}
+
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+loadPlayers();
+</script>
+</body>
+</html>

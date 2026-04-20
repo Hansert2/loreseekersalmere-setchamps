@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player — Lore Seekers Almere</title>
+  <link rel="icon" href="/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-page:     hsl(236 34% 17%);
+      --bg-card:     hsl(236 34% 26%);
+      --bg-card-alt: hsl(236 34% 22%);
+      --bg-elevated: hsl(236 34% 32%);
+      --bg-hover:    hsl(236 34% 34%);
+      --gold:        hsl(41 47% 67%);
+      --gold-light:  hsl(35 51% 77%);
+      --gold-dim:    hsl(41 47% 67% / 0.15);
+      --green:       hsl(126 53% 45%);
+      --red:         hsl(348 93% 53%);
+      --blue:        hsl(210 80% 60%);
+      --blue-dim:    hsl(210 80% 60% / 0.12);
+      --blue-border: hsl(210 80% 60% / 0.35);
+      --text:        #fff;
+      --text-muted:  rgba(255,255,255,0.5);
+      --text-faint:  rgba(255,255,255,0.25);
+      --border:      rgba(255,255,255,0.08);
+      --border-gold: hsl(41 47% 67% / 0.4);
+      --shadow:      0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 14px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-page);
+      background-image: url('https://storage.googleapis.com/spicerack_media/game_images/1_disney-lorcana/background/lorcana-event-bg.png');
+      background-size: 400px;
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      background: var(--bg-card-alt);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      height: 52px;
+    }
+    .page-header-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .page-header-logo img { width: 30px; height: 30px; object-fit: contain; }
+    .page-header-sub {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 0.1rem;
+    }
+    .page-header-social {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: var(--text-muted);
+      border-radius: 4px;
+      transition: color 0.12s, background 0.12s;
+      text-decoration: none;
+    }
+    .social-link:hover { color: var(--gold); background: var(--gold-dim); }
+    .social-link svg { width: 16px; height: 16px; }
+    .breadcrumb-sep { color: var(--text-faint); font-size: 1rem; }
+    .breadcrumb-current { color: var(--text-muted); font-size: 0.875rem; font-weight: 500; }
+
+    /* ── Page wrap ── */
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.825rem;
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+      transition: color 0.12s;
+    }
+    .back-link:hover { color: var(--gold); }
+
+    /* ── Player header card ── */
+    .player-header {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.5rem 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .avatar-large {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: var(--bg-elevated);
+      border: 2px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+    .player-header-info { flex: 1; min-width: 0; }
+    .player-header-tag { font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+    .player-header-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .stat-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 0.1rem;
+    }
+    .stat-value { font-size: 1rem; font-weight: 600; color: var(--text); }
+
+    /* ── Section header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── Championships table ── */
+    .table-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.825rem;
+      table-layout: fixed;
+    }
+    .data-table col.col-date      { width: 110px; }
+    .data-table col.col-store     { width: auto; }
+    .data-table col.col-placement { width: 110px; }
+    .data-table col.col-record    { width: 100px; }
+    .data-table col.col-view      { width: 90px; }
+    .data-table th:nth-child(3),
+    .data-table td:nth-child(3),
+    .data-table th:nth-child(4),
+    .data-table td:nth-child(4),
+    .data-table th:nth-child(5),
+    .data-table td:nth-child(5) { text-align: center; }
+    .data-table thead th {
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .data-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    .data-table tbody tr:last-child { border-bottom: none; }
+    .data-table tbody tr:hover { background: var(--bg-hover); }
+    .data-table tbody td {
+      padding: 0.7rem 1rem;
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    /* ── Upcoming row ── */
+    .data-table tbody tr.upcoming { opacity: 0.75; }
+    .upcoming-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--blue-dim);
+      border: 1px solid var(--blue-border);
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    /* ── Set section ── */
+    .set-section { margin-bottom: 2rem; }
+
+    .set-section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 1rem;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      flex-wrap: wrap;
+    }
+    .set-section-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .set-section-count { font-size: 0.72rem; color: var(--text-faint); }
+    .set-section-best { margin-left: auto; font-size: 0.72rem; color: var(--text-muted); }
+    .set-section-best span { color: var(--gold); font-weight: 600; }
+
+    .store-name { font-weight: 500; }
+    .event-name { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .row-date-mobile { font-size: 0.7rem; color: var(--text-faint); margin-bottom: 0.15rem; display: none; }
+
+    .placement-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .placement-chip.top { background: var(--gold-dim); border-color: var(--border-gold); color: var(--gold); }
+
+    .record-chip {
+      font-size: 0.78rem;
+      font-family: 'Inter', monospace;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-muted);
+    }
+    .record-chip .w { color: var(--green); }
+    .record-chip .l { color: var(--red); }
+
+    .view-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--border-gold);
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.12s, color 0.12s;
+      white-space: nowrap;
+    }
+    .view-btn:hover { background: var(--gold-dim); color: var(--gold-light); }
+    .view-btn svg { flex-shrink: 0; }
+
+    /* ── Empty / loading states ── */
+    .empty-state {
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .empty-state-hint { font-size: 0.75rem; color: var(--text-faint); margin-top: 0.4rem; }
+    .loading-bar {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      margin-bottom: 1.5rem;
+    }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+    .error-banner {
+      background: hsl(348 93% 43% / 0.1);
+      border: 1px solid hsl(348 93% 43% / 0.3);
+      color: var(--red);
+      padding: 0.75rem 1.25rem;
+      font-size: 0.825rem;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .player-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .player-header-tag { font-size: 1.1rem; }
+
+      /* On mobile: hide Date and View columns, show date inside store cell */
+      .data-table col.col-date  { width: 0; }
+      .data-table col.col-view  { width: 0; }
+      .data-table th:nth-child(1),
+      .data-table td:nth-child(1),
+      .data-table th:nth-child(5),
+      .data-table td:nth-child(5) { display: none; }
+
+      /* Tighten remaining columns */
+      .data-table col.col-placement { width: 80px; }
+      .data-table col.col-record    { width: 80px; }
+
+      .data-table tbody td { padding: 0.6rem 0.75rem; }
+      .data-table thead th { padding: 0.5rem 0.75rem; }
+
+      .row-date-mobile { display: block; }
+
+      /* Make rows tappable as links */
+      .data-table tbody tr.has-link { cursor: pointer; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="page-header">
+  <a href="/" class="page-header-logo">
+    <img src="/logo.png" alt="LSA Logo" onerror="this.style.display='none'" />
+    <div>
+      Lore Seekers Almere
+      <div class="page-header-sub">Team Set Championship Statistics</div>
+    </div>
+  </a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current" id="breadcrumb-name">Player</span>
+  <nav class="page-header-social">
+    <a href="https://www.twitch.tv/loreseekersalmere" target="_blank" rel="noopener" aria-label="Twitch" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/loreseekers.almere/" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@LoreSeekers.Almere" target="_blank" rel="noopener" aria-label="YouTube" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+    </a>
+  </nav>
+</header>
+
+<main class="page-wrap">
+  <a href="/" class="back-link">‹ Back to team roster</a>
+
+  <div id="loading-bar" class="loading-bar"></div>
+  <div id="error-banner" class="error-banner" style="display:none;"></div>
+
+  <div id="content" style="display:none;">
+    <!-- Player header -->
+    <div class="player-header">
+      <div class="avatar-large" id="ph-initials"></div>
+      <div class="player-header-info">
+        <div class="player-header-tag" id="ph-tag"></div>
+        <div class="player-header-stats">
+          <div class="stat-cell">
+            <div class="stat-label">Events</div>
+            <div class="stat-value" id="ph-events">0</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-label">Best Finish</div>
+            <div class="stat-value" id="ph-best">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Championships (grouped by set, injected by JS) -->
+    <div class="section-header">
+      <span class="section-title">Set Championships</span>
+    </div>
+    <div id="champs-wrap"></div>
+  </div>
+</main>
+
+<script>
+const LORCANA_STATIC_BASE = 'https://hansert2.github.io/lorcana-static/?event=';
+const TODAY = new Date().toISOString().slice(0, 10);
+
+async function load() {
+  const params = new URLSearchParams(location.search);
+  const slug   = params.get('player');
+  if (!slug) { showError('No player specified.'); return; }
+
+  try {
+    const res = await fetch('/players.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const players = await res.json();
+    const player = players.find(p => p.slug === slug);
+    if (!player) throw new Error('Player not found');
+    render(player);
+  } catch (e) {
+    showError(e.message);
+  } finally {
+    document.getElementById('loading-bar').style.display = 'none';
+  }
+}
+
+function render(player) {
+  document.title = `${player.tag} — Lore Seekers Almere`;
+  document.getElementById('breadcrumb-name').textContent = player.tag;
+  document.getElementById('ph-initials').textContent = player.initials || '??';
+  document.getElementById('ph-tag').textContent      = player.tag;
+
+  const champs = player.championships || [];
+  const pastChamps = champs.filter(c => !isUpcoming(c));
+
+  document.getElementById('ph-events').textContent = pastChamps.length;
+
+  const bestFinish = pastChamps.reduce((best, c) => {
+    const p = parseInt(c.placement);
+    return !isNaN(p) && (best === null || p < best) ? p : best;
+  }, null);
+  document.getElementById('ph-best').textContent = bestFinish !== null ? `#${bestFinish}` : '—';
+
+  const wrap = document.getElementById('champs-wrap');
+
+  if (champs.length === 0) {
+    wrap.innerHTML = `
+      <div class="empty-state">
+        No events recorded yet.
+        <div class="empty-state-hint">Championships will appear here once added to the data file.</div>
+      </div>
+    `;
+    document.getElementById('content').style.display = 'block';
+    return;
+  }
+
+  // Group by setName, most recent set first
+  const setOrder = [];
+  const bySet = {};
+  for (const c of champs) {
+    const key = c.setName || '—';
+    if (!bySet[key]) { bySet[key] = []; setOrder.push(key); }
+    bySet[key].push(c);
+  }
+  setOrder.reverse();
+
+  wrap.innerHTML = setOrder.map(setName => {
+    const events = bySet[setName].sort((a, b) => {
+      // upcoming events go to top of their set
+      if (isUpcoming(a) && !isUpcoming(b)) return -1;
+      if (!isUpcoming(a) && isUpcoming(b)) return 1;
+      if (!a.date && !b.date) return 0;
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    const bestInSet = events.reduce((best, c) => {
+      if (isUpcoming(c)) return best;
+      const p = parseInt(c.placement);
+      return !isNaN(p) && (best === null || p < best) ? p : best;
+    }, null);
+
+    const rows = events.map(c => {
+      const upcoming = isUpcoming(c);
+      const placement = parseInt(c.placement);
+      const isTop = !isNaN(placement) && placement <= 8;
+
+      const placementHtml = upcoming
+        ? `<span class="upcoming-badge">Upcoming</span>`
+        : c.placement != null
+          ? `<span class="placement-chip${isTop ? ' top' : ''}">${esc(String(c.placement))}</span>`
+          : '<span style="color:var(--text-faint)">—</span>';
+
+      let recordHtml = '<span style="color:var(--text-faint)">—</span>';
+      if (!upcoming && c.record) {
+        const parts = String(c.record).split('-').map(Number);
+        const w = parts[0] ?? 0, l = parts[1] ?? 0;
+        const d = !isNaN(parts[2]) ? parts[2] : null;
+        recordHtml = `<span class="record-chip"><span class="w">${w}</span>-<span class="l">${l}</span>${d !== null ? '-' + d : ''}</span>`;
+      }
+
+      const viewUrl = c.eventId ? esc(LORCANA_STATIC_BASE + c.eventId) : '';
+      const viewBtn = viewUrl
+        ? `<a class="view-btn" href="${viewUrl}" target="_blank" rel="noopener">
+             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+             View
+           </a>`
+        : '';
+
+      const rowClass = [upcoming ? 'upcoming' : '', viewUrl ? 'has-link' : ''].filter(Boolean).join(' ');
+      const rowAttr  = viewUrl ? `onclick="window.open('${viewUrl}','_blank')"` : '';
+
+      return `
+        <tr class="${rowClass}" ${rowAttr}>
+          <td style="white-space:nowrap; color:var(--text-muted); font-size:0.8rem">${c.date ? esc(fmtDate(c.date)) : '—'}</td>
+          <td>
+            <div class="row-date-mobile">${c.date ? esc(fmtDate(c.date)) : ''}</div>
+            <div class="store-name">${esc(c.store || '—')}</div>
+            <div class="event-name">${esc(c.eventName || '')}</div>
+          </td>
+          <td>${placementHtml}</td>
+          <td>${recordHtml}</td>
+          <td>${viewBtn}</td>
+        </tr>
+      `;
+    }).join('');
+
+    const bestLabel = bestInSet !== null ? `Best: <span>#${bestInSet}</span>` : '';
+
+    return `
+      <div class="set-section">
+        <div class="set-section-header">
+          <span class="set-section-name">${esc(setName)}</span>
+          <span class="set-section-count">${events.length} event${events.length !== 1 ? 's' : ''}</span>
+          ${bestLabel ? `<span class="set-section-best">${bestLabel}</span>` : ''}
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <colgroup>
+              <col class="col-date" />
+              <col class="col-store" />
+              <col class="col-placement" />
+              <col class="col-record" />
+              <col class="col-view" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Store</th>
+                <th>Placement</th>
+                <th>Record</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('content').style.display = 'block';
+}
+
+function isUpcoming(c) {
+  return c.date && c.date > TODAY;
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-banner');
+  el.textContent = `Error: ${msg}`;
+  el.style.display = 'block';
+}
+
+function fmtDate(iso) {
+  try {
+    return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+  } catch { return iso; }
+}
+
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+load();
+</script>
+</body>
+</html>
