@@ -543,7 +543,7 @@ function render(player) {
       const placementHtml = upcoming
         ? `<span class="upcoming-badge">Upcoming</span>`
         : c.placement != null
-          ? `<span class="placement-chip${isTop ? ' top' : ''}">${esc(String(c.placement))}</span>`
+          ? `<span class="placement-chip${isTop ? ' top' : ''}">#${esc(String(c.placement))}</span>`
           : '<span style="color:var(--text-faint)">—</span>';
 
       let recordHtml = '<span style="color:var(--text-faint)">—</span>';
