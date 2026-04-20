@@ -1,0 +1,17 @@
+{
+  "name": "loreseekersalmere-website",
+  "version": "1.0.0",
+  "description": "Lore Seekers Almere team website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "sync": "node -e \"require('fs').copyFileSync('data/players.json','public/players.json');console.log('Synced players.json → public/');\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
