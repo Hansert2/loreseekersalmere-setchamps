@@ -477,7 +477,7 @@ let currentSet   = null;
 
 async function loadPlayers() {
   try {
-    const res = await fetch('players.json');
+    const res = await fetch('players.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error('Failed to load players');
     const players = await res.json();
     render(players);
@@ -595,9 +595,9 @@ function render(players) {
       if (idx > bestSetIdx) { bestSetIdx = idx; currentSet = c.setName; }
     }
   }
-  // Build one pill per set present in data, most recent first
+  // Build one pill per set that has at least one past event, most recent first
   const setsInData = SET_ORDER.filter(s =>
-    players.some(p => (p.championships ?? []).some(c => c.setName === s))
+    players.some(p => (p.championships ?? []).some(c => c.setName === s && (!c.date || c.date <= today)))
   ).reverse();
 
   const pillsEl = document.getElementById('filter-pills');
