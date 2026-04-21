@@ -429,9 +429,11 @@
     <span class="section-count" id="player-count"></span>
   </div>
 
-  <div class="filter-bar" id="filter-bar" style="display:none;">
+  <div class="filter-bar" id="filter-bar">
     <span class="filter-label">Season</span>
-    <div class="filter-pills" id="filter-pills"></div>
+    <div class="filter-pills" id="filter-pills">
+      <button class="filter-pill active" data-set="" onclick="setFilter(null)">All time</button>
+    </div>
   </div>
 
   <div class="player-grid" id="player-grid">
@@ -599,16 +601,10 @@ function render(players) {
     players.some(p => (p.championships ?? []).some(c => c.setName === s && (!c.date || c.date <= today)))
   ).reverse();
 
+  // Append set pills after the static "All time" pill
   const pillsEl = document.getElementById('filter-pills');
-  pillsEl.innerHTML = '';
-
-  // "All time" pill
-  const allBtn = document.createElement('button');
-  allBtn.className = 'filter-pill active';
-  allBtn.dataset.set = '';
-  allBtn.textContent = 'All time';
-  allBtn.onclick = () => setFilter(null);
-  pillsEl.appendChild(allBtn);
+  // Remove any previously-added set pills (keep the static All time button)
+  pillsEl.querySelectorAll('[data-set]:not([data-set=""])').forEach(el => el.remove());
 
   for (const setName of setsInData) {
     const btn = document.createElement('button');
@@ -619,10 +615,6 @@ function render(players) {
       ? `<span class="dot"></span>${setName}`
       : setName;
     pillsEl.appendChild(btn);
-  }
-
-  if (setsInData.length > 0) {
-    document.getElementById('filter-bar').style.display = '';
   }
 
   renderGrid();
