@@ -1017,6 +1017,32 @@
     ]
   },
   {
+    "slug": "mrblizzard",
+    "tag": "LSA_MrBlizzard",
+    "name": "",
+    "initials": "MB",
+    "championships": [
+      {
+        "eventId": 156994,
+        "setName": "Reign of Jafar",
+        "eventName": "Spellekijn Reign of Jafar - Set Championship",
+        "date": "2025-07-20",
+        "placement": 15,
+        "record": "2-3",
+        "store": "Spellekijn"
+      },
+      {
+        "eventId": 193045,
+        "setName": "Fabled",
+        "eventName": "Fabled: Set Championship",
+        "date": "2025-10-05",
+        "placement": 15,
+        "record": "0-3",
+        "store": "Het Beeldverhaal"
+      }
+    ]
+  },
+  {
     "slug": "mai",
     "tag": "Mai | Illumineer Tales ✨",
     "name": "",
