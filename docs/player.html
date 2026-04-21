@@ -449,6 +449,14 @@
             <div class="stat-label">Best Finish</div>
             <div class="stat-value" id="ph-best">—</div>
           </div>
+          <div class="stat-cell">
+            <div class="stat-label">Win Rate</div>
+            <div class="stat-value" id="ph-winrate">—</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-label">Top 8 Rate</div>
+            <div class="stat-value" id="ph-top8">—</div>
+          </div>
         </div>
       </div>
     </div>
@@ -500,6 +508,23 @@ function render(player) {
     return !isNaN(p) && (best === null || p < best) ? p : best;
   }, null);
   document.getElementById('ph-best').textContent = bestFinish !== null ? `#${bestFinish}` : '—';
+
+  let totalW = 0, totalL = 0, totalD = 0;
+  for (const c of pastChamps) {
+    if (!c.record) continue;
+    const parts = c.record.split('-').map(Number);
+    totalW += parts[0] || 0;
+    totalL += parts[1] || 0;
+    totalD += parts[2] || 0;
+  }
+  const totalGames = totalW + totalL + totalD;
+  const wr = totalGames > 0 ? Math.round((totalW / totalGames) * 100) : null;
+  document.getElementById('ph-winrate').textContent = wr !== null ? `${wr}%` : '—';
+
+  const withPlacement = pastChamps.filter(c => c.placement !== null && !isNaN(parseInt(c.placement)));
+  const top8Count = withPlacement.filter(c => parseInt(c.placement) <= 8).length;
+  const top8Rate = withPlacement.length > 0 ? Math.round((top8Count / withPlacement.length) * 100) : null;
+  document.getElementById('ph-top8').textContent = top8Rate !== null ? `${top8Rate}%` : '—';
 
   const wrap = document.getElementById('champs-wrap');
 
