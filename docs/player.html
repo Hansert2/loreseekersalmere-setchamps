@@ -7,7 +7,7 @@
   <link rel="icon" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg-page:     hsl(236 34% 17%);
@@ -35,7 +35,7 @@
     html { font-size: 14px; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Barlow', sans-serif;
       background-color: var(--bg-page);
       background-image: url('https://storage.googleapis.com/spicerack_media/game_images/1_disney-lorcana/background/lorcana-event-bg.png');
       background-size: 400px;
@@ -59,9 +59,10 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--gold);
       text-decoration: none;
@@ -144,7 +145,7 @@
       letter-spacing: 0.02em;
     }
     .player-header-info { flex: 1; min-width: 0; }
-    .player-header-tag { font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+    .player-header-tag { font-family: 'Oswald', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--gold); letter-spacing: 0.04em; }
     .player-header-stats {
       display: flex;
       gap: 1.5rem;
@@ -152,14 +153,15 @@
       flex-wrap: wrap;
     }
     .stat-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-faint);
       margin-bottom: 0.1rem;
     }
-    .stat-value { font-size: 1rem; font-weight: 600; color: var(--text); }
+    .stat-value { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
 
     /* ── Section header ── */
     .section-header {
@@ -171,9 +173,10 @@
       border-bottom: 1px solid var(--border);
     }
     .section-title {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
@@ -206,9 +209,10 @@
     .data-table thead th {
       padding: 0.65rem 1rem;
       text-align: left;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-muted);
       border-bottom: 1px solid var(--border);
@@ -256,9 +260,10 @@
       flex-wrap: wrap;
     }
     .set-section-name {
-      font-size: 0.8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold);
     }

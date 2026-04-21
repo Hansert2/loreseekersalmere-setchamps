@@ -7,7 +7,7 @@
   <link rel="icon" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@400;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg-page:     hsl(236 34% 17%);
@@ -30,7 +30,7 @@
     html { font-size: 14px; }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Barlow', sans-serif;
       background-color: var(--bg-page);
       background-image: url('https://storage.googleapis.com/spicerack_media/game_images/1_disney-lorcana/background/lorcana-event-bg.png');
       background-size: 400px;
@@ -54,9 +54,10 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--gold);
     }
@@ -96,25 +97,43 @@
     /* ── Hero ── */
     .hero {
       text-align: center;
-      padding: 2rem 1rem 1.5rem;
+      padding: 2.5rem 1rem 1.75rem;
+      position: relative;
+    }
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, hsl(41 47% 67% / 0.18) 0%, transparent 70%);
+      pointer-events: none;
     }
     .hero-logo {
-      width: 140px;
-      height: 140px;
+      width: 130px;
+      height: 130px;
       object-fit: contain;
+      position: relative;
+      filter: drop-shadow(0 0 24px hsl(41 47% 67% / 0.35));
     }
     .hero-title {
-      font-size: 2rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.4rem;
       font-weight: 700;
       color: var(--gold);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 0.4rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0.3rem;
+      line-height: 1;
     }
     .hero-subtitle {
-      font-size: 0.875rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
@@ -128,22 +147,27 @@
     }
     .stat-tile {
       background: var(--bg-card-alt);
-      padding: 1.1rem 1rem;
+      padding: 1.25rem 1rem;
       text-align: center;
+      border-top: 2px solid var(--border-gold);
+      position: relative;
     }
     .stat-tile-value {
-      font-size: 1.6rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.6rem;
       font-weight: 700;
       color: var(--gold);
-      line-height: 1.1;
+      line-height: 1;
+      letter-spacing: 0.02em;
     }
     .stat-tile-label {
-      font-size: 0.65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-top: 0.3rem;
+      margin-top: 0.35rem;
     }
 
     /* ── Page wrap ── */
@@ -163,9 +187,10 @@
       border-bottom: 1px solid var(--border);
     }
     .section-title {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
@@ -188,12 +213,18 @@
       align-items: center;
       gap: 1rem;
       padding: 1.1rem 1.25rem;
+      padding-left: 1.05rem;
       cursor: pointer;
       text-decoration: none;
       color: inherit;
-      transition: background 0.12s;
+      border-left: 3px solid transparent;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
     }
-    .player-card:hover { background: var(--bg-hover); }
+    .player-card:hover {
+      background: var(--bg-hover);
+      border-left-color: var(--gold);
+      transform: translateX(2px);
+    }
     .player-card:hover .player-tag { color: var(--gold-light); }
 
     .avatar {
@@ -269,9 +300,10 @@
     .overview-table th {
       padding: 0.6rem 1rem;
       text-align: left;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-muted);
       border-bottom: 1px solid var(--border);
@@ -325,46 +357,76 @@
       gap: 0.4rem;
     }
     .filter-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-faint);
       flex-shrink: 0;
+      align-self: center;
     }
     .filter-pill {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      padding: 0.3rem 0.75rem;
-      font-size: 0.75rem;
-      font-weight: 500;
+      padding: 0.4rem 0.75rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       background: transparent;
-      border: 1px solid var(--border);
+      border: none;
+      border-bottom: 2px solid transparent;
       color: var(--text-muted);
       cursor: pointer;
-      font-family: inherit;
-      transition: background 0.12s, color 0.12s, border-color 0.12s;
+      transition: color 0.15s, border-color 0.15s;
     }
-    .filter-pill:hover { border-color: var(--border-gold); color: var(--gold-light); }
+    .filter-pill:hover { color: var(--gold-light); }
     .filter-pill.active {
-      background: var(--gold-dim);
-      border-color: var(--border-gold);
       color: var(--gold);
+      border-bottom-color: var(--gold);
     }
     .filter-pill .dot {
-      width: 6px; height: 6px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: currentColor;
+    }
+
+    /* ── Entry animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .player-card {
+        opacity: 0;
+        animation: fadeUp 0.35s ease forwards;
+      }
+      .player-card:nth-child(1)  { animation-delay: 0.03s; }
+      .player-card:nth-child(2)  { animation-delay: 0.07s; }
+      .player-card:nth-child(3)  { animation-delay: 0.11s; }
+      .player-card:nth-child(4)  { animation-delay: 0.15s; }
+      .player-card:nth-child(5)  { animation-delay: 0.19s; }
+      .player-card:nth-child(6)  { animation-delay: 0.23s; }
+      .player-card:nth-child(7)  { animation-delay: 0.27s; }
+      .player-card:nth-child(8)  { animation-delay: 0.31s; }
+      .player-card:nth-child(9)  { animation-delay: 0.35s; }
+      .player-card:nth-child(10) { animation-delay: 0.38s; }
+      .player-card:nth-child(11) { animation-delay: 0.41s; }
+      .player-card:nth-child(12) { animation-delay: 0.44s; }
     }
 
     @media (max-width: 640px) {
       html { font-size: 13px; }
       .hero { padding: 1.75rem 1rem 1.25rem; }
-      .hero-logo { width: 72px; height: 72px; }
+      .hero-logo { width: 80px; height: 80px; }
+      .hero-title { font-size: 1.7rem; }
+      .hero-subtitle { font-size: 0.72rem; letter-spacing: 0.12em; }
       .hero-title { font-size: 1.4rem; }
       .player-grid { grid-template-columns: 1fr; }
       .stats-banner { grid-template-columns: repeat(2, 1fr); }
+      .stat-tile-value { font-size: 2rem; }
 
       /* Keep only Player / Events / Best Finish — hide Record, Win %, Sets */
       .overview-table { min-width: unset; }
@@ -398,7 +460,10 @@
 </header>
 
 <div class="hero">
+  <div class="hero-glow"></div>
   <img src="logo.png" alt="Lore Seekers Almere" class="hero-logo" onerror="this.style.display='none'" />
+  <div class="hero-title">Lore Seekers Almere</div>
+  <div class="hero-subtitle">Set Championship Statistics</div>
 </div>
 
 <main class="page-wrap">
