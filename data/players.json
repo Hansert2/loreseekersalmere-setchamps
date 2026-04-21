@@ -855,6 +855,24 @@
         "store": "Mox spellen"
       },
       {
+        "eventId": 211079,
+        "setName": "Fabled",
+        "eventName": "Mana Pro Fabled - Set Championship",
+        "date": "2025-10-11",
+        "placement": 13,
+        "record": "2-3",
+        "store": "MANA PRO"
+      },
+      {
+        "eventId": 215481,
+        "setName": "Fabled",
+        "eventName": "Sunday Afternoon Fabled - Set Championship",
+        "date": "2025-10-12",
+        "placement": 5,
+        "record": "2-1-1",
+        "store": "Goodness Gracious Games"
+      },
+      {
         "eventId": 267453,
         "setName": "Whispers in the Well",
         "eventName": "Whispers in the Well - Set Championship",
