@@ -32,7 +32,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 14px; }
+    html { font-size: 16px; }
 
     body {
       font-family: 'Barlow', sans-serif;
@@ -344,6 +344,7 @@
 
     /* ── Mobile ── */
     @media (max-width: 600px) {
+      html { font-size: 15px; }
       /* Declutter header: drop socials and subtext, truncate breadcrumb */
       .page-header-social { display: none; }
       .page-header-sub    { display: none; }
