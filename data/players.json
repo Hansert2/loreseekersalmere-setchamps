@@ -1015,5 +1015,22 @@
         "store": "Spellenpoort"
       }
     ]
+  },
+  {
+    "slug": "mai",
+    "tag": "Mai | Illumineer Tales ✨",
+    "name": "",
+    "initials": "MI",
+    "championships": [
+      {
+        "eventId": 157970,
+        "setName": "Reign of Jafar",
+        "eventName": "Reign of Jafar: Set Championship",
+        "date": "2025-08-02",
+        "placement": 9,
+        "record": "2-2",
+        "store": "Het Beeldverhaal"
+      }
+    ]
   }
 ]
