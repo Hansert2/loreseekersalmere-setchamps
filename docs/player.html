@@ -483,22 +483,21 @@
 <script>
 const LORCANA_STATIC_BASE = 'https://hansert2.github.io/lorcana-static/?event=';
 const TODAY = new Date().toISOString().slice(0, 10);
+const HEADSHOT_POS = {
+  loregoat:     'center 35%',
+  loredirector: '58% 40%',
+  loregiant:    '45% 22%',
+  geekinside:   'center 55%',
+  maaikeymarie: 'center 10%',
+  rishi1997:    '58% 42%',
+  razberry:     'center 52%',
+  kirujon:      '42% 32%',
+  ilkeryayla:   '58% 15%',
+  mrblizzard:   'center 5%',
+  mai:          'center 40%',
+};
 
 async function load() {
-  const HEADSHOT_POS = {
-    loregoat:     'center 35%',
-    loredirector: '58% 40%',
-    loregiant:    '45% 22%',
-    geekinside:   'center 55%',
-    maaikeymarie: 'center 10%',
-    rishi1997:    '58% 42%',
-    razberry:     'center 52%',
-    kirujon:      '42% 32%',
-    ilkeryayla:   '58% 15%',
-    mrblizzard:   'center 5%',
-    mai:          'center 40%',
-  };
-
   const params = new URLSearchParams(location.search);
   const slug   = params.get('player');
   if (!slug) { showError('No player specified.'); return; }
