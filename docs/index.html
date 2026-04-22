@@ -255,7 +255,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
       transform: scale(1.4);
       transform-origin: top center;
     }
@@ -612,6 +611,20 @@
 </main>
 
 <script>
+const HEADSHOT_POS = {
+  loregoat:     'center 10%',
+  loredirector: '58% 10%',
+  loregiant:    '45% 10%',
+  geekinside:   'center 25%',
+  maaikeymarie: 'center 10%',
+  rishi1997:    '58% 10%',
+  razberry:     'center 22%',
+  kirujon:      '42% 10%',
+  ilkeryayla:   '58% 8%',
+  mrblizzard:   'center 5%',
+  mai:          'center 18%',
+};
+
 const SET_ORDER = [
   'The First Chapter', 'Rise of the Floodborn', 'Into the Inklands',
   "Ursula's Return", 'Shimmering Skies', 'Azurite Sea', "Archazia's Island",
@@ -691,6 +704,7 @@ function renderGrid() {
       <div class="avatar">
         <span class="avatar-initials">${esc(p.initials)}</span>
         <img src="headshots/${esc(p.slug)}.png" alt=""
+             style="object-position:${HEADSHOT_POS[p.slug] || 'center 10%'}"
              onload="this.previousElementSibling.style.display='none'"
              onerror="this.style.display='none'">
       </div>
