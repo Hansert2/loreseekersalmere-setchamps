@@ -367,7 +367,7 @@
       .player-header { flex-direction: column; gap: 0; padding: 0; position: relative; min-height: 260px; }
       .avatar-large { position: absolute; inset: 0; width: 100%; height: 100%; }
       .avatar-large img {
-        object-position: center 40% !important;
+        object-position: var(--hs-pos-m, center 45%) !important;
         transform-origin: center center;
       }
       .player-header::after {
@@ -510,6 +510,19 @@ const HEADSHOT_POS = {
   mrblizzard:   'center 5%',
   mai:          'center 40%',
 };
+const HEADSHOT_POS_MOBILE = {
+  loregoat:     'center 45%',
+  loredirector: 'center 50%',
+  loregiant:    'center 22%',
+  geekinside:   'center 55%',
+  maaikeymarie: 'center 48%',
+  rishi1997:    'center 52%',
+  razberry:     'center 55%',
+  kirujon:      'center 42%',
+  ilkeryayla:   'center 42%',
+  mrblizzard:   'center 28%',
+  mai:          'center 52%',
+};
 
 async function load() {
   const params = new URLSearchParams(location.search);
@@ -539,6 +552,7 @@ function render(player) {
   const hsImg = document.getElementById('ph-headshot');
   hsImg.src = `headshots/${player.slug}.png`;
   hsImg.style.objectPosition = HEADSHOT_POS[player.slug] || 'center 20%';
+  hsImg.style.setProperty('--hs-pos-m', HEADSHOT_POS_MOBILE[player.slug] || 'center 45%');
   hsImg.style.display = '';
   document.getElementById('ph-tag').textContent      = player.tag;
 
