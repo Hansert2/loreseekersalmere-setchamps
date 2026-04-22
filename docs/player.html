@@ -143,6 +143,17 @@
       color: var(--gold);
       flex-shrink: 0;
       letter-spacing: 0.02em;
+      overflow: hidden;
+      position: relative;
+    }
+    .avatar-large img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 50%;
     }
     .player-header-info { flex: 1; min-width: 0; }
     .player-header-tag { font-family: 'Oswald', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--gold); letter-spacing: 0.04em; }
@@ -437,7 +448,9 @@
   <div id="content" style="display:none;">
     <!-- Player header -->
     <div class="player-header">
-      <div class="avatar-large" id="ph-initials"></div>
+      <div class="avatar-large" id="ph-initials">
+        <img id="ph-headshot" src="" alt="" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'" style="display:none">
+      </div>
       <div class="player-header-info">
         <div class="player-header-tag" id="ph-tag"></div>
         <div class="player-header-stats">
@@ -495,7 +508,12 @@ async function load() {
 function render(player) {
   document.title = `${player.tag} — Lore Seekers Almere`;
   document.getElementById('breadcrumb-name').textContent = player.tag;
-  document.getElementById('ph-initials').textContent = player.initials || '??';
+  const avatarEl = document.getElementById('ph-initials');
+  const initialsNode = document.createTextNode(player.initials || '??');
+  avatarEl.insertBefore(initialsNode, avatarEl.firstChild);
+  const hsImg = document.getElementById('ph-headshot');
+  hsImg.src = `headshots/${player.slug}.png`;
+  hsImg.style.display = '';
   document.getElementById('ph-tag').textContent      = player.tag;
 
   const champs = player.championships || [];
