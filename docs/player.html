@@ -123,25 +123,23 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      padding: 1.5rem 1.5rem 1.25rem;
+      padding: 0 1.5rem 0 0;
       margin-bottom: 1.5rem;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       gap: 1.5rem;
+      overflow: hidden;
     }
     .avatar-large {
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
+      width: 120px;
+      flex-shrink: 0;
       background: var(--bg-elevated);
-      border: 2px solid var(--border-gold);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--gold);
-      flex-shrink: 0;
       letter-spacing: 0.02em;
       overflow: hidden;
       position: relative;
@@ -152,10 +150,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top;
-      border-radius: 50%;
+      transform: scale(1.4);
+      transform-origin: top center;
     }
-    .player-header-info { flex: 1; min-width: 0; }
+    .player-header-info { flex: 1; min-width: 0; padding: 1.5rem 0 1.25rem; }
     .player-header-tag { font-family: 'Oswald', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--gold); letter-spacing: 0.04em; }
     .player-header-stats {
       display: flex;
@@ -487,6 +485,20 @@ const LORCANA_STATIC_BASE = 'https://hansert2.github.io/lorcana-static/?event=';
 const TODAY = new Date().toISOString().slice(0, 10);
 
 async function load() {
+  const HEADSHOT_POS = {
+    loregoat:     'center 35%',
+    loredirector: '58% 40%',
+    loregiant:    '45% 22%',
+    geekinside:   'center 55%',
+    maaikeymarie: 'center 10%',
+    rishi1997:    '58% 42%',
+    razberry:     'center 52%',
+    kirujon:      '42% 32%',
+    ilkeryayla:   '58% 15%',
+    mrblizzard:   'center 5%',
+    mai:          'center 40%',
+  };
+
   const params = new URLSearchParams(location.search);
   const slug   = params.get('player');
   if (!slug) { showError('No player specified.'); return; }
@@ -513,6 +525,7 @@ function render(player) {
   avatarEl.insertBefore(initialsNode, avatarEl.firstChild);
   const hsImg = document.getElementById('ph-headshot');
   hsImg.src = `headshots/${player.slug}.png`;
+  hsImg.style.objectPosition = HEADSHOT_POS[player.slug] || 'center 20%';
   hsImg.style.display = '';
   document.getElementById('ph-tag').textContent      = player.tag;
 
