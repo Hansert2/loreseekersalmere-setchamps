@@ -168,15 +168,6 @@
         "store": "Kai of Cards B.V."
       },
       {
-        "eventId": 395554,
-        "setName": "Winterspell",
-        "eventName": "Winterspell - Set Championship @TCGFAMILY",
-        "date": "2026-04-26",
-        "placement": null,
-        "record": null,
-        "store": "TCGFamily"
-      },
-      {
         "eventId": 489091,
         "setName": "Wilds Unknown",
         "eventName": "Saturday Morning Wilds Unknown Set Championship",
@@ -417,15 +408,6 @@
         "record": "2-2",
         "store": "Kai of Cards B.V."
       },
-      {
-        "eventId": 395554,
-        "setName": "Winterspell",
-        "eventName": "Winterspell - Set Championship @TCGFAMILY",
-        "date": "2026-04-26",
-        "placement": null,
-        "record": null,
-        "store": "TCGFamily"
-      }
     ]
   },
   {
@@ -810,15 +792,6 @@
         "record": "1-3",
         "store": "ShibeTCG"
       },
-      {
-        "eventId": 352087,
-        "setName": "Winterspell",
-        "eventName": "Kai of Cards Winterspell - Set Championship",
-        "date": "2026-04-25",
-        "placement": null,
-        "record": null,
-        "store": "Kai of Cards B.V."
-      }
     ]
   },
   {
