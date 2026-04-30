@@ -168,6 +168,15 @@
         "store": "Kai of Cards B.V."
       },
       {
+        "eventId": 355814,
+        "setName": "Winterspell",
+        "eventName": "Sunday Afternoon Winterspell - Set Championship",
+        "date": "2026-04-26",
+        "placement": 5,
+        "record": "2-2",
+        "store": "De Spellentoren"
+      },
+      {
         "eventId": 489091,
         "setName": "Wilds Unknown",
         "eventName": "Saturday Morning Wilds Unknown Set Championship",
@@ -407,6 +416,15 @@
         "placement": 10,
         "record": "2-2",
         "store": "Kai of Cards B.V."
+      },
+      {
+        "eventId": 355814,
+        "setName": "Winterspell",
+        "eventName": "Sunday Afternoon Winterspell - Set Championship",
+        "date": "2026-04-26",
+        "placement": 8,
+        "record": "1-3",
+        "store": "De Spellentoren"
       }
     ]
   },
