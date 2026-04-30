@@ -154,7 +154,7 @@
         "setName": "Winterspell",
         "eventName": "Spellekijn - Winterspell - Set Championship",
         "date": "2026-04-19",
-        "placement": null,
+        "placement": 8,
         "record": "2-2-1",
         "store": "Spellekijn"
       },
@@ -163,8 +163,8 @@
         "setName": "Winterspell",
         "eventName": "Kai of Cards Winterspell - Set Championship",
         "date": "2026-04-25",
-        "placement": null,
-        "record": null,
+        "placement": 7,
+        "record": "2-2",
         "store": "Kai of Cards B.V."
       },
       {
@@ -315,7 +315,7 @@
         "setName": "Winterspell",
         "eventName": "Spellekijn - Winterspell - Set Championship",
         "date": "2026-04-19",
-        "placement": null,
+        "placement": 13,
         "record": "1-3",
         "store": "Spellekijn"
       }
@@ -404,7 +404,7 @@
         "setName": "Winterspell",
         "eventName": "Spellekijn - Winterspell - Set Championship",
         "date": "2026-04-19",
-        "placement": null,
+        "placement": 15,
         "record": "1-3",
         "store": "Spellekijn"
       },
@@ -413,8 +413,8 @@
         "setName": "Winterspell",
         "eventName": "Kai of Cards Winterspell - Set Championship",
         "date": "2026-04-25",
-        "placement": null,
-        "record": null,
+        "placement": 10,
+        "record": "2-2",
         "store": "Kai of Cards B.V."
       },
       {
@@ -574,7 +574,7 @@
         "setName": "Winterspell",
         "eventName": "Spellekijn - Winterspell - Set Championship",
         "date": "2026-04-19",
-        "placement": null,
+        "placement": 10,
         "record": "2-2",
         "store": "Spellekijn"
       },
@@ -583,8 +583,8 @@
         "setName": "Winterspell",
         "eventName": "Kai of Cards Winterspell - Set Championship",
         "date": "2026-04-25",
-        "placement": null,
-        "record": null,
+        "placement": 1,
+        "record": "6-0",
         "store": "Kai of Cards B.V."
       }
     ]
@@ -735,7 +735,7 @@
         "setName": "Winterspell",
         "eventName": "Spellekijn - Winterspell - Set Championship",
         "date": "2026-04-19",
-        "placement": null,
+        "placement": 14,
         "record": "1-3",
         "store": "Spellekijn"
       },
@@ -744,8 +744,8 @@
         "setName": "Winterspell",
         "eventName": "Kai of Cards Winterspell - Set Championship",
         "date": "2026-04-25",
-        "placement": null,
-        "record": null,
+        "placement": 13,
+        "record": "1-3",
         "store": "Kai of Cards B.V."
       }
     ]
@@ -913,8 +913,8 @@
         "setName": "Winterspell",
         "eventName": "Kai of Cards Winterspell - Set Championship",
         "date": "2026-04-25",
-        "placement": null,
-        "record": null,
+        "placement": 5,
+        "record": "2-2",
         "store": "Kai of Cards B.V."
       }
     ]
